@@ -1,6 +1,5 @@
 "use client";
 
-import AmountCounter from "@/components/AmountCounter";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import AnimatedCounterForTotalContri from "@/components/AnimatedCounterForTotalContri";
 
@@ -100,7 +99,7 @@ const Home = () => {
   if (name) {
     return (
       <div className='w-full min-h-full max-w-4xl mx-auto'>
-        <div className='pt-2 pb-20 px-4'>
+        <div className='pt-6 pb-20 px-4'>
           <div className='flex flex-col justify-center text-center'>
             <p className='text-xl sm:text-2xl'>Welcome</p>
             <h1 className='text-center text-2xl sm:text-3xl md:text-5xl font-medium'>
@@ -124,7 +123,7 @@ const Home = () => {
               <p className='text-2xl sm:text-3xl  mb-3 sm:mb-5'>
                 Total Contributions
               </p>
-              <div className='relative shadow-lg dark:shadow-md shadow-gray-400 dark:shadow-gray-500 bg-gradient-to-tr from-amber-300 dark:from-slate-900 to-green-200 p-7 rounded-xl'>
+              <div className='relative shadow-lg dark:shadow-md shadow-gray-400 dark:shadow-gray-700 bg-white dark:bg-gray-800 p-7 rounded-xl'>
                 {/* <AmountCounter
                   value={total_contributions}
                   style='text-4xl sm:text-5xl font-bold ml-3 text-slate-900'
@@ -136,7 +135,7 @@ const Home = () => {
                   duratn={3}
                 />
 
-                <p className='absolute top-4 left-4 text-lg font-semibold'>₦</p>
+                <p className='absolute top-4 left-4 text-lg text-green-600 font-semibold'>₦</p>
                 <div className='absolute -top-2 -right-2'>
                   <span className='relative flex h-7 w-7 justify-center items-center'>
                     <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75'></span>
@@ -242,7 +241,7 @@ const Home = () => {
   }
 
   return (
-    <div className='w-full px-4 pt-20 pb-32 flex flex-col items-center justify-center'>
+    <div className='w-full min-h-screen px-4 pt-20 pb-32 flex flex-col items-center justify-center'>
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       {/* <UserRecord data={data} /> */}
 
@@ -262,8 +261,10 @@ const Home = () => {
         </h1>
       </div>
 
+   
+
       <div className='mt-12 px-4 flex flex-col justify-center items-center'>
-        <InputOTP
+        <InputOTP type="text"
           maxLength={8}
           pattern={regexPattern}
           value={value}

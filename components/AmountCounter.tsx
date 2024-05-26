@@ -9,27 +9,31 @@ type Props = {
 };
 
 const AmountCounter = ({ value, style, duratn }: Props) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
-  const formatNumber = (num: number): string => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
+  // const formatNumber = (num: number): string => {
+  //   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  // };
 
   useEffect(() => {
-    let start = 0;
-    // const duration = duratn;
-    const incrementTime = value / (duratn / 1000); 
+    let start = 1;
+    const end = value;
+    const duration = duratn * 1000;
+     const step = Math.ceil((end - start) / (duration / 10));
+    // const incrementTime = duration / (end - start);
 
-    const timer = setInterval(() => {
-      start += incrementTime;
-      setCount(start);
-      if (start === value) clearInterval(timer);
-    }, 1000 / 60);
+    const incrementCounter = () => {
+      if (start < end) {
+        start = Math.min(start + step, end);
+        setCount(start);
+        setTimeout(incrementCounter, 10);
+      }
+    };
 
-    return () => clearInterval(timer);
+    incrementCounter();
   }, [value, duratn]);
 
-  return <div className={style}>{formatNumber(count)}</div>;
+  return <div className={style}>{new Intl.NumberFormat().format(count)}</div>;
 };
 
 export default AmountCounter;

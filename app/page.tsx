@@ -1,6 +1,8 @@
 "use client";
 
 import AmountCounter from "@/components/AmountCounter";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import AnimatedCounterForTotalContri from "@/components/AnimatedCounterForTotalContri";
 
 import LoanDialog from "@/components/LoanDialog";
 import {
@@ -10,12 +12,7 @@ import {
 } from "@/components/ui/input-otp";
 import { createClient } from "@/utils/supabase/client";
 import dayjs from "dayjs";
-import {
-  CalendarRangeIcon,
-  LoaderCircleIcon,
-  LoaderIcon,
-  MapPinIcon,
-} from "lucide-react";
+import { CalendarRangeIcon, LoaderCircleIcon, LoaderIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -92,13 +89,13 @@ const Home = () => {
       router.refresh();
       setLoading(false);
     }
-  }, [value.length === 6, supabase]);
+  }, [value.length === 8, supabase]);
 
   useEffect(() => {
-    if (value.length === 6) {
+    if (value.length === 8) {
       getRecords();
     }
-  }, [value.length === 6, getRecords]);
+  }, [value.length === 8, getRecords]);
 
   if (name) {
     return (
@@ -111,34 +108,35 @@ const Home = () => {
                 {name}
               </span>
             </h1>
-            <div className='mt-1 flex justify-center items-center gap-4 text-sm text-gray-500'>
-              <div className='flex items-center gap-1'>
+            <div className='mt-1 flex justify-center items-center gap-4 text-gray-500'>
+              {/* <div className='flex items-center gap-1'>
                 <MapPinIcon className='text-pink-600 w-5 h-5' /> {location}
-              </div>
+              </div> */}
               <div className='flex items-center gap-1'>
-                <CalendarRangeIcon className='text-purple-500 w-5 h-5' />
-                Joined {dayjs(date_joined).format("MMM DD, YYYY")}
+                <CalendarRangeIcon className='w-6 h-6' />
+                Joined {date_joined}
               </div>
             </div>
           </div>
 
           <div className='mt-12 sm:mt-20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-12'>
             <div>
-              <p className='text-3xl sm:text-4xl  mb-3 sm:mb-5'>
+              <p className='text-2xl sm:text-3xl  mb-3 sm:mb-5'>
                 Total Contributions
               </p>
               <div className='relative shadow-lg dark:shadow-md shadow-gray-400 dark:shadow-gray-500 bg-gradient-to-tr from-amber-300 dark:from-slate-900 to-green-200 p-7 rounded-xl'>
-                {/* {total_contributions} */}
-
-                <AmountCounter
+                {/* <AmountCounter
                   value={total_contributions}
-                  style='text-3xl sm:text-4xl md:text-6xl font-bold ml-3'
-                  duratn={1000000}
+                  style='text-4xl sm:text-5xl font-bold ml-3 text-slate-900'
+                  duratn={3}
+                /> */}
+
+                <AnimatedCounterForTotalContri
+                  value={total_contributions}            
+                  duratn={3}
                 />
 
-                <p className='absolute top-4 left-4 text-green- text-lg font-semibold'>
-                  ₦
-                </p>
+                <p className='absolute top-4 left-4 text-lg font-semibold'>₦</p>
                 <div className='absolute -top-2 -right-2'>
                   <span className='relative flex h-7 w-7 justify-center items-center'>
                     <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75'></span>
@@ -146,21 +144,27 @@ const Home = () => {
                   </span>
                 </div>
 
-                <p className='ml-3 mt-2 text-gray-500 font-light'>
+                <p className='ml-3 text-gray-500 font-light '>
                   as at {dayjs(latest_update).format("MMM, YYYY")}
                 </p>
               </div>
             </div>
 
             <div className='relative'>
+              <AnimatedCounter
+                value={monthly_contribution}
+                style='text-xl sm:text-3xl font-bold ml-5'
+                duratn={2}
+              />
+              {/* 
               <AmountCounter
                 value={monthly_contribution}
                 style='text-xl sm:text-3xl font-bold ml-5'
-                duratn={100000}
-              />
+                duratn={2}
+              /> */}
               <p className='absolute -top-2 left-0'>₦</p>
 
-              <p className='ml-5 mt-2 text-gray-500  font-light'>
+              <p className='ml-5 text-gray-500  font-light'>
                 Monthly contribution
               </p>
             </div>
@@ -258,19 +262,21 @@ const Home = () => {
         </h1>
       </div>
 
-      <div className='mt-12 flex flex-col justify-center items-center'>
+      <div className='mt-12 px-4 flex flex-col justify-center items-center'>
         <InputOTP
-          maxLength={6}
+          maxLength={8}
           pattern={regexPattern}
           value={value}
           onChange={(value: string) => setValue(value)}>
           <InputOTPGroup>
-            <InputOTPSlot index={0} className='sm:p-6' />
+            <InputOTPSlot index={0} className=' sm:p-6' />
             <InputOTPSlot index={1} className='sm:p-6' />
             <InputOTPSlot index={2} className='sm:p-6' />
             <InputOTPSlot index={3} className='sm:p-6' />
             <InputOTPSlot index={4} className='sm:p-6' />
             <InputOTPSlot index={5} className='sm:p-6' />
+            <InputOTPSlot index={6} className='sm:p-6' />
+            <InputOTPSlot index={7} className='sm:p-6' />
           </InputOTPGroup>
         </InputOTP>
 

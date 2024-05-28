@@ -88,13 +88,13 @@ const Home = () => {
       router.refresh();
       setLoading(false);
     }
-  }, [value.length === 8, supabase]);
+  }, [value, supabase, router]);
 
   useEffect(() => {
-    if (value.length === 8) {
+    if (value.length === 6) {
       getRecords();
     }
-  }, [value.length === 8, getRecords]);
+  }, [value, getRecords]);
 
   if (name) {
     return (
@@ -241,7 +241,7 @@ const Home = () => {
   }
 
   return (
-    <div className='w-full min-h-screen px-4 pt-20 pb-32 flex flex-col items-center justify-center'>
+    <div className='w-full h-full px-4 pt-20 pb-32 flex flex-col items-center justify-center'>
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       {/* <UserRecord data={data} /> */}
 
@@ -261,32 +261,29 @@ const Home = () => {
         </h1>
       </div>
 
-   
-
       <div className='mt-12 px-4 flex flex-col justify-center items-center'>
-        <InputOTP type="text"
-          maxLength={8}
+        <InputOTP
+          type='text'
+          maxLength={6}
           pattern={regexPattern}
           value={value}
           onChange={(value: string) => setValue(value)}>
           <InputOTPGroup>
-            <InputOTPSlot index={0} className=' sm:p-6' />
-            <InputOTPSlot index={1} className='sm:p-6' />
-            <InputOTPSlot index={2} className='sm:p-6' />
-            <InputOTPSlot index={3} className='sm:p-6' />
-            <InputOTPSlot index={4} className='sm:p-6' />
-            <InputOTPSlot index={5} className='sm:p-6' />
-            <InputOTPSlot index={6} className='sm:p-6' />
-            <InputOTPSlot index={7} className='sm:p-6' />
+            <InputOTPSlot index={0} className='sm:p-6 border-gray-600' />
+            <InputOTPSlot index={1} className='sm:p-6 border-gray-600' />
+            <InputOTPSlot index={2} className='sm:p-6 border-gray-600' />
+            <InputOTPSlot index={3} className='sm:p-6 border-gray-600' />
+            <InputOTPSlot index={4} className='sm:p-6 border-gray-600' />
+            <InputOTPSlot index={5} className='sm:p-6 border-gray-600' />
           </InputOTPGroup>
         </InputOTP>
 
         <div className='mt-2'>
-          {loading ? <LoaderIcon className='animate-spin' /> : "Enter passcode"}
+          {loading ? <LoaderIcon className='animate-spin' /> : "Enter your IPPIS No."}
         </div>
         {wrongCode && (
           <p className='text-center text-sm text-red-600'>
-            Wrong passcode or something else went wrong. Try again.
+            Wrong IPPIS No. or something else went wrong. Try again.
           </p>
         )}
       </div>

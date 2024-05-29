@@ -269,12 +269,12 @@ const Home = () => {
           value={value}
           onChange={(value: string) => setValue(value)}>
           <InputOTPGroup>
-            <InputOTPSlot index={0} className='sm:p-6 border-gray-600' />
-            <InputOTPSlot index={1} className='sm:p-6 border-gray-600' />
-            <InputOTPSlot index={2} className='sm:p-6 border-gray-600' />
-            <InputOTPSlot index={3} className='sm:p-6 border-gray-600' />
-            <InputOTPSlot index={4} className='sm:p-6 border-gray-600' />
-            <InputOTPSlot index={5} className='sm:p-6 border-gray-600' />
+            <InputOTPSlot index={0} className=' border-gray-600' />
+            <InputOTPSlot index={1} className=' border-gray-600' />
+            <InputOTPSlot index={2} className=' border-gray-600' />
+            <InputOTPSlot index={3} className=' border-gray-600' />
+            <InputOTPSlot index={4} className=' border-gray-600' />
+            <InputOTPSlot index={5} className=' border-gray-600' />
           </InputOTPGroup>
         </InputOTP>
 

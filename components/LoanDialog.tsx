@@ -126,19 +126,17 @@ const LoanDialog = ({
 
             <div>
               <InputOTP
-                maxLength={8}
+                maxLength={6}
                 pattern={regexPattern}
                 value={passcode}
                 onChange={(passcode: string) => setPasscode(passcode)}>
                 <InputOTPGroup>
-                  <InputOTPSlot index={0} className='sm:p-6' />
-                  <InputOTPSlot index={1} className='sm:p-6' />
-                  <InputOTPSlot index={2} className='sm:p-6' />
-                  <InputOTPSlot index={3} className='sm:p-6' />
-                  <InputOTPSlot index={4} className='sm:p-6' />
-                  <InputOTPSlot index={5} className='sm:p-6' />
-                  <InputOTPSlot index={6} className='sm:p-6' />
-                  <InputOTPSlot index={7} className='sm:p-6' />
+                  <InputOTPSlot index={0} className=' border-gray-500' />
+                  <InputOTPSlot index={1} className=' border-gray-500' />
+                  <InputOTPSlot index={2} className=' border-gray-500' />
+                  <InputOTPSlot index={3} className=' border-gray-500' />
+                  <InputOTPSlot index={4} className=' border-gray-500' />
+                  <InputOTPSlot index={5} className=' border-gray-500' />
                 </InputOTPGroup>
               </InputOTP>
               <p className='text-sm text-center text-gray-500'>

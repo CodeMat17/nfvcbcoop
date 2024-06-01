@@ -51,6 +51,7 @@ const LoanDialog = ({
 
   const [passcode, setPasscode] = useState<string>("");
   const [wrongPasscode, setWrongPasscode] = useState(false);
+  const currentDateISO = new Date().toISOString()
 
   const loanApplication = async () => {
     setWrongPasscode(false);
@@ -64,7 +65,7 @@ const LoanDialog = ({
 
         const { data, error } = await supabase
           .from("records")
-          .update({ loan_status: "processing", loan_amount: intAmount })
+          .update({ loan_status: "processing", loan_amount: intAmount, applied_on: currentDateISO })
           .eq("code", loanCode)
           .select();
 

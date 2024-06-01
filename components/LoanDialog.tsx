@@ -112,7 +112,7 @@ const LoanDialog = ({
               <SelectContent>
                 <SelectGroup>
                   {/* <SelectLabel>Fruits</SelectLabel> */}
-                  <SelectItem value='1000'>₦10,000</SelectItem>
+                  <SelectItem value='10000'>₦10,000</SelectItem>
                   <SelectItem value='15000'>₦15,000</SelectItem>
                   <SelectItem value='20000'>₦20,000</SelectItem>
                   <SelectItem value='25000'>₦25,000</SelectItem>

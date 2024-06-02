@@ -27,6 +27,7 @@ import {
 import { LoaderIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export const revalidate = 0;
 
@@ -51,7 +52,7 @@ const LoanDialog = ({
 
   const [passcode, setPasscode] = useState<string>("");
   const [wrongPasscode, setWrongPasscode] = useState(false);
-  const currentDateISO = new Date().toISOString()
+  const currentDateISO = new Date().toISOString();
 
   const loanApplication = async () => {
     setWrongPasscode(false);
@@ -65,7 +66,11 @@ const LoanDialog = ({
 
         const { data, error } = await supabase
           .from("records")
-          .update({ loan_status: "processing", loan_amount: intAmount, applied_on: currentDateISO })
+          .update({
+            loan_status: "processing",
+            loan_amount: intAmount,
+            applied_on: currentDateISO,
+          })
           .eq("code", loanCode)
           .select();
 
@@ -74,7 +79,7 @@ const LoanDialog = ({
         }
 
         if (!error) {
-          console.log("Row updated successfully:", data);
+          toast("Hurray!, Loan request submitted successfully!.");
           reload();
           // router.refresh();
         }

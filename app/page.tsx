@@ -131,11 +131,13 @@ const Home = () => {
                 /> */}
 
                 <AnimatedCounterForTotalContri
-                  value={total_contributions}            
+                  value={total_contributions}
                   duratn={3}
                 />
 
-                <p className='absolute top-4 left-4 text-lg text-green-600 font-semibold'>₦</p>
+                <p className='absolute top-4 left-4 text-lg text-green-600 font-semibold'>
+                  ₦
+                </p>
                 <div className='absolute -top-2 right-0'>
                   <span className='relative flex h-5 w-5 justify-center items-center'>
                     <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75'></span>
@@ -181,8 +183,9 @@ const Home = () => {
                 <LoanDialog code={code} reload={getRecords} />
                 <p className='mt-4 '>
                   You are qualified to apply for a soft-loan of not more than
-                  ₦50,000. But note that the Admin reserves the right to approve
-                  or not approve a soft-loan considering some situations.
+                  ₦50,000 and a min. of ₦10,000. Note that the Admin
+                  may approve or not approve a soft-loan
+                  considering some conditions.
                 </p>
                 <h1 className='text-red-600 text-lg'>T&C</h1>
                 <ul className='text-left space-y-2 text-red-600'>
@@ -279,11 +282,11 @@ const Home = () => {
         </InputOTP>
 
         <div className='mt-2'>
-          {loading ? <LoaderIcon className='animate-spin' /> : "Enter your IPPIS No."}
+          {loading ? <LoaderIcon className='animate-spin' /> : "Enter your passcode."}
         </div>
         {wrongCode && (
           <p className='text-center text-sm text-red-600'>
-            Wrong IPPIS No. or something else went wrong. Try again.
+            Wrong passcode or something else went wrong. Try again.
           </p>
         )}
       </div>

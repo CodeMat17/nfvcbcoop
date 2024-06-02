@@ -4301,6 +4301,11 @@ smob@^1.0.0:
   resolved "https://registry.yarnpkg.com/smob/-/smob-1.5.0.tgz#85d79a1403abf128d24d3ebc1cdc5e1a9548d3ab"
   integrity sha512-g6T+p7QO8npa+/hNx9ohv1E5pVCmWrVCUzUXJyLdMmftX6ER0oiWY/w9knEonLpnOp6b6FenKnMfR8gqwWdwig==
 
+sonner@^1.4.41:
+  version "1.4.41"
+  resolved "https://registry.yarnpkg.com/sonner/-/sonner-1.4.41.tgz#ff085ae4f4244713daf294959beaa3e90f842d2c"
+  integrity sha512-uG511ggnnsw6gcn/X+YKkWPo5ep9il9wYi3QJxHsYe7yTZ4+cOd1wuodOUmOpFuXL+/RE3R04LczdNCDygTDgQ==
+
 source-list-map@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-2.0.1.tgz#3993bd873bfc48479cca9ea3a547835c7c154b34"

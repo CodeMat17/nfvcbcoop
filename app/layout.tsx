@@ -2,30 +2,30 @@ import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   manifest: "/manifest.json",
-  title: "NFVCB Coop Portal",
+  title: "NFVCB Coop",
   description:
     "This is the NFVCB Multipurpose Cooperative Society Ltd contribution portal",
   twitter: {
     card: "summary",
-    title: "NFVCB Coop Portal",
+    title: "NFVCB Coop",
     description:
       "This is the NFVCB Multipurpose Cooperative Society Ltd contribution portal",
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "NFVCB Coop Portal",
+    title: "NFVCB Coop",
   },
   openGraph: {
     url: "https://nfvcbcoop-contributions.com.ng",
-    siteName: "NFVCB Coop Portal",
+    siteName: "NFVCB Coop",
     images: [
       {
         url: "https://res.cloudinary.com/mctony17/image/upload/v1716676461/nfvcb_coop/coop-logo_jpg.jpg", // Must be an absolute URL
@@ -58,6 +58,7 @@ export default function RootLayout({
           disableTransitionOnChange>
           <Header />
           <main> {children}</main>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

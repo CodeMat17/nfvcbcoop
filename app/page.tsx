@@ -183,7 +183,7 @@ const Home = () => {
                 <LoanDialog code={code} reload={getRecords} />
                 <p className='mt-4 '>
                   You are qualified to apply for a soft-loan of not more than
-                  ₦50,000 and a min. of ₦10,000. Note that the Admin
+                  ₦150,000 and a min. of ₦10,000. Note that the Admin
                   may approve or not approve a soft-loan
                   considering some conditions.
                 </p>

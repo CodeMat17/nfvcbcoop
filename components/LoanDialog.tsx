@@ -92,7 +92,7 @@ const LoanDialog = ({
   };
 
   return (
-    <div className='px-4'>
+    <div className='px-4 w-full'>
       <Dialog>
         <DialogTrigger asChild>
           <Button variant='outline' className='text-lg px-10 py-4'>
@@ -114,18 +114,24 @@ const LoanDialog = ({
               <SelectTrigger className='w-full'>
                 <SelectValue placeholder='Select loan amount' />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="overflow-scroll pb-20 mb-8">
                 <SelectGroup>
                   {/* <SelectLabel>Fruits</SelectLabel> */}
                   <SelectItem value='10000'>₦10,000</SelectItem>
-                  <SelectItem value='15000'>₦15,000</SelectItem>
                   <SelectItem value='20000'>₦20,000</SelectItem>
-                  <SelectItem value='25000'>₦25,000</SelectItem>
                   <SelectItem value='30000'>₦30,000</SelectItem>
-                  <SelectItem value='35000'>₦35,000</SelectItem>
                   <SelectItem value='40000'>₦40,000</SelectItem>
-                  <SelectItem value='45000'>₦45,000</SelectItem>
                   <SelectItem value='50000'>₦50,000</SelectItem>
+                  <SelectItem value='60000'>₦60,000</SelectItem>
+                  <SelectItem value='70000'>₦70,000</SelectItem>
+                  <SelectItem value='80000'>₦80,000</SelectItem>
+                  <SelectItem value='90000'>₦90,000</SelectItem>
+                  <SelectItem value='100000'>₦100,000</SelectItem>
+                  <SelectItem value='110000'>₦110,000</SelectItem>
+                  <SelectItem value='120000'>₦120,000</SelectItem>
+                  <SelectItem value='130000'>₦130,000</SelectItem>
+                  <SelectItem value='140000'>₦140,000</SelectItem>
+                  <SelectItem value='150000'>₦150,000</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>

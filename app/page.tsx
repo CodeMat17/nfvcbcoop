@@ -102,8 +102,8 @@ const Home = () => {
         <div className='pt-6 pb-20 px-4'>
           <div className='flex flex-col justify-center text-center'>
             <p className='text-xl sm:text-2xl'>Welcome</p>
-            <h1 className='text-center text-2xl sm:text-3xl md:text-5xl font-medium'>
-              <span className='bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-green-600'>
+            <h1 className='text-center text-2xl sm:text-3xl md:text-5xl font-semibold'>
+              <span className=''>
                 {name}
               </span>
             </h1>

@@ -190,7 +190,7 @@ const Home = () => {
                   conditions.
                 </p>
                 <h1 className='text-red-600 text-lg'>T&C</h1>
-                <ul className='text-left space-y-2 text-red-600'>
+                <ul className='text-center space-y-2 text-red-600'>
                   <li>
                     5% of loan amount will be deducted from source as
                     commission.

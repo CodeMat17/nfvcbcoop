@@ -52,41 +52,59 @@ const LoanDialog = ({
 
   const [passcode, setPasscode] = useState<string>("");
   const [wrongPasscode, setWrongPasscode] = useState(false);
+  const [noAmount, setNoAmount] = useState(false);
+  const [noPasscode, setNoPasscode] = useState(false);
   const currentDateISO = new Date().toISOString();
+
+  // console.log('InitAmount: ', typeof(intAmount));
+  // console.log("passcode: ", passcode);
 
   const loanApplication = async () => {
     setWrongPasscode(false);
     if (loanCode != passcode) {
       setWrongPasscode(true);
     }
-    console.log("loanCode: ", loanCode);
+    // console.log("loanCode: ", loanCode);
+    setNoAmount(false);
+    setNoPasscode(false);
+
     if (loanCode === passcode) {
-      try {
-        setLoading(true);
+      if (!intAmount) {
+        return setNoAmount(true);
+      }
 
-        const { data, error } = await supabase
-          .from("records")
-          .update({
-            loan_status: "processing",
-            loan_amount: intAmount,
-            applied_on: currentDateISO,
-          })
-          .eq("code", loanCode)
-          .select();
+      if (!passcode) {
+        return setNoPasscode(true);
+      }
 
-        if (error) {
-          console.error("Error updating row:", error.message);
+      if (intAmount || passcode) {
+        try {
+          setLoading(true);
+
+          const { data, error } = await supabase
+            .from("records")
+            .update({
+              loan_status: "processing",
+              loan_amount: intAmount,
+              applied_on: currentDateISO,
+            })
+            .eq("code", loanCode)
+            .select();
+
+          if (error) {
+            console.error("Error updating row:", error.message);
+          }
+
+          if (!error) {
+            toast("Hurray!, Loan request submitted successfully!.");
+            reload();
+            // router.refresh();
+          }
+        } catch (error) {
+          console.log("Error Msg: ", error);
+        } finally {
+          setLoading(false);
         }
-
-        if (!error) {
-          toast("Hurray!, Loan request submitted successfully!.");
-          reload();
-          // router.refresh();
-        }
-      } catch (error) {
-        console.log("Error Msg: ", error);
-      } finally {
-        setLoading(false);
       }
     }
   };
@@ -110,11 +128,12 @@ const LoanDialog = ({
                 Wrong passcode
               </div>
             )}
+            {noAmount && <p className='text-red-500 text-sm'>Select amount</p>}
             <Select value={amount} onValueChange={(value) => setAmount(value)}>
               <SelectTrigger className='w-full'>
                 <SelectValue placeholder='Select loan amount' />
               </SelectTrigger>
-              <SelectContent className="overflow-scroll pb-20 mb-8">
+              <SelectContent className='overflow-scroll pb-20 mb-8'>
                 <SelectGroup>
                   {/* <SelectLabel>Fruits</SelectLabel> */}
                   <SelectItem value='10000'>₦10,000</SelectItem>

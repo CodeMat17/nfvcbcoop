@@ -233,8 +233,8 @@ const Home = () => {
                 <p className='text-lg text-green-600'>Approved!</p>
                 <p className='mt-2'>
                   Congratulations. Your soft-loan has been approved. You are
-                  expected to repay on or before {repay_date}. Note that you
-                  will be penalized if you default.
+                  expected to repay on or before{" "}
+                  <span className="font-semibold text-red-600">{dayjs(repay_date).format("MMM DD, YYYY")}</span>. Note that you will be penalized if you default.
                 </p>
               </div>
             </div>

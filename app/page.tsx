@@ -37,9 +37,12 @@ const Home = () => {
   const [date_joined, setDateJoined] = useState(null);
   const [location, setLocation] = useState(null);
   const [latest_update, setLatestUpdate] = useState(null);
+  const [ repay_date, setRepayDate] = useState(null);
   const [loan_amount, setLoanAmount] = useState(null);
 
   const [wrongCode, setWrongCode] = useState(false);
+
+
 
   const getRecords = useCallback(async () => {
     try {
@@ -49,7 +52,7 @@ const Home = () => {
       const { data, error, status } = await supabase
         .from("records")
         .select(
-          "id, name, phone, code, total_contributions,monthly_contribution, loan_status, approved_by, cleared_by, ippis_no, date_joined, location, latest_update,loan_amount"
+          "id, name, phone, code, total_contributions,monthly_contribution, loan_status, approved_by, cleared_by, ippis_no, date_joined, location, latest_update,loan_amount, repay_date"
         )
         .eq("code", value)
         .single();
@@ -78,6 +81,7 @@ const Home = () => {
         setLocation(data.location);
         setLatestUpdate(data.latest_update);
         setLoanAmount(data.loan_amount);
+        setRepayDate(data.repay_date)
       }
     } catch (error) {
       alert("Error loading user data!");
@@ -103,9 +107,7 @@ const Home = () => {
           <div className='flex flex-col justify-center text-center'>
             <p className='text-xl sm:text-2xl'>Welcome</p>
             <h1 className='text-center text-2xl sm:text-3xl md:text-5xl font-semibold'>
-              <span className=''>
-                {name}
-              </span>
+              <span className=''>{name}</span>
             </h1>
             <div className='mt-1 flex justify-center items-center gap-4 text-gray-500'>
               {/* <div className='flex items-center gap-1'>
@@ -183,9 +185,9 @@ const Home = () => {
                 <LoanDialog code={code} reload={getRecords} />
                 <p className='mt-4 '>
                   You are qualified to apply for a soft-loan of not more than
-                  ₦150,000 and a min. of ₦10,000. Note that the Admin
-                  may approve or not approve a soft-loan
-                  considering some conditions.
+                  ₦150,000 and a min. of ₦10,000. Note that the Admin may
+                  approve or not approve a soft-loan considering some
+                  conditions.
                 </p>
                 <h1 className='text-red-600 text-lg'>T&C</h1>
                 <ul className='text-left space-y-2 text-red-600'>
@@ -194,7 +196,7 @@ const Home = () => {
                     commission.
                   </li>
                   <li>
-                    Loan payback duration is 3 mount starting from the date of
+                    Loan payback duration is 6 mount starting from the date of
                     approval.
                   </li>
                   <li>
@@ -229,10 +231,9 @@ const Home = () => {
               className={`flex flex-col items-center justify-center py-20 px-5 mt-12  bg-green-100 dark:bg-slate-800 rounded-xl`}>
               <div className='flex flex-col gap-4 max-w-sm mx-auto text-center'>
                 <p className='text-lg text-green-600'>Approved!</p>
-
                 <p className='mt-2'>
                   Congratulations. Your soft-loan has been approved. You are
-                  expected to repay on or before Jun 13, 2024. Note that you
+                  expected to repay on or before {repay_date}. Note that you
                   will be penalized if you default.
                 </p>
               </div>
@@ -282,7 +283,11 @@ const Home = () => {
         </InputOTP>
 
         <div className='mt-2'>
-          {loading ? <LoaderIcon className='animate-spin' /> : "Enter your passcode."}
+          {loading ? (
+            <LoaderIcon className='animate-spin' />
+          ) : (
+            "Enter your passcode."
+          )}
         </div>
         {wrongCode && (
           <p className='text-center text-sm text-red-600'>

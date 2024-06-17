@@ -126,7 +126,7 @@ const Home = () => {
           </div>
 
           <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-12'>
-            <div className='mt-12 sm:mt-20 flex flex-col gap-12'>
+            <div className='mt-12 sm:mt-20 md:mt-16 flex flex-col gap-12'>
               <div>
                 <p className='text-2xl sm:text-3xl  mb-3 sm:mb-5'>
                   Total Contributions
@@ -185,7 +185,7 @@ const Home = () => {
             <div>
               {loan_status === "free" && (
                 <div
-                  className={`flex flex-col items-center justify-center p-5 mt-12 md:mt-20 bg-gray-100 dark:bg-gray-800 rounded-xl`}>
+                  className={`flex flex-col items-center justify-center p-5 mt-12 md:mt-16 bg-gray-100 dark:bg-gray-800 rounded-xl`}>
                   <div className='flex flex-col gap-4 max-w-sm mx-auto text-center'>
                     <p>You need a soft-loan?</p>
                     {/* <Button>Apply</Button> */}
@@ -221,7 +221,7 @@ const Home = () => {
               {/* loan processing */}
               {loan_status === "processing" && (
                 <div
-                  className={`flex flex-col items-center justify-center px-5 py-20 mt-12 md:mt-20 bg-amber-100 dark:bg-slate-800 rounded-xl`}>
+                  className={`flex flex-col items-center justify-center px-5 py-20 mt-12 md:mt-16 bg-amber-100 dark:bg-slate-800 rounded-xl`}>
                   <div className='flex flex-col gap-4 max-w-sm mx-auto text-center'>
                     <div className='flex items-center justify-center gap-3'>
                       <p className='text-lg'>Processing</p>
@@ -238,7 +238,7 @@ const Home = () => {
               {/* loan approved */}
               {loan_status === "approved" && (
                 <div
-                  className={`flex flex-col items-center justify-center px-5 py-20 mt-12 md:mt-20 bg-green-100 dark:bg-slate-800 rounded-xl`}>
+                  className={`flex flex-col items-center justify-center px-5 py-20 mt-12 md:mt-16 bg-green-100 dark:bg-slate-800 rounded-xl`}>
                   <div className='flex flex-col gap-4 max-w-sm mx-auto text-center'>
                     <p className='text-lg text-green-600'>Approved!</p>
                     <p className='mt-2'>

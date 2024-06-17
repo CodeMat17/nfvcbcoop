@@ -10,14 +10,21 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { createClient } from "@/utils/supabase/client";
+// import {createClient} from '@supabase/supabase-js'
 import dayjs from "dayjs";
 import { CalendarRangeIcon, LoaderCircleIcon, LoaderIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
+//  const supabase = createClient(
+//    process.env.SUPABASE_URL!,
+//    process.env.SUPABASE_ANON_KEY!
+//  );
+
 const Home = () => {
   const supabase = createClient();
+
   const router = useRouter();
   const regexPattern = "^[a-zA-Z0-9]*$";
 
@@ -37,12 +44,10 @@ const Home = () => {
   const [date_joined, setDateJoined] = useState(null);
   const [location, setLocation] = useState(null);
   const [latest_update, setLatestUpdate] = useState(null);
-  const [ repay_date, setRepayDate] = useState(null);
+  const [repay_date, setRepayDate] = useState(null);
   const [loan_amount, setLoanAmount] = useState(null);
 
   const [wrongCode, setWrongCode] = useState(false);
-
-
 
   const getRecords = useCallback(async () => {
     try {
@@ -81,7 +86,7 @@ const Home = () => {
         setLocation(data.location);
         setLatestUpdate(data.latest_update);
         setLoanAmount(data.loan_amount);
-        setRepayDate(data.repay_date)
+        setRepayDate(data.repay_date);
       }
     } catch (error) {
       alert("Error loading user data!");
@@ -103,7 +108,7 @@ const Home = () => {
   if (name) {
     return (
       <div className='w-full min-h-full max-w-4xl mx-auto'>
-        <div className='pt-6 pb-20 px-4'>
+        <div className='pt-6 pb-20 px-4 md:px-5'>
           <div className='flex flex-col justify-center text-center'>
             <p className='text-xl sm:text-2xl'>Welcome</p>
             <h1 className='text-center text-2xl sm:text-3xl md:text-5xl font-semibold'>
@@ -120,125 +125,135 @@ const Home = () => {
             </div>
           </div>
 
-          <div className='mt-12 sm:mt-20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-12'>
-            <div>
-              <p className='text-2xl sm:text-3xl  mb-3 sm:mb-5'>
-                Total Contributions
-              </p>
-              <div className='relative shadow-lg dark:shadow-md shadow-gray-400 dark:shadow-gray-700 bg-white dark:bg-gray-800 p-7 rounded-xl'>
-                {/* <AmountCounter
+          <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-12'>
+            <div className='mt-12 sm:mt-20 flex flex-col gap-12'>
+              <div>
+                <p className='text-2xl sm:text-3xl  mb-3 sm:mb-5'>
+                  Total Contributions
+                </p>
+                <div className='relative shadow-lg dark:shadow-md shadow-gray-400 dark:shadow-gray-700 bg-white dark:bg-gray-800 p-7 rounded-xl'>
+                  {/* <AmountCounter
                   value={total_contributions}
                   style='text-4xl sm:text-5xl font-bold ml-3 text-slate-900'
                   duratn={3}
                 /> */}
 
-                <AnimatedCounterForTotalContri
-                  value={total_contributions}
-                  duratn={3}
-                />
+                  <AnimatedCounterForTotalContri
+                    value={total_contributions}
+                    duratn={3}
+                  />
 
-                <p className='absolute top-4 left-4 text-lg text-green-600 font-semibold'>
-                  ₦
-                </p>
-                <div className='absolute -top-2 right-0'>
-                  <span className='relative flex h-5 w-5 justify-center items-center'>
-                    <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75'></span>
-                    <span className='relative inline-flex rounded-full h-3 w-3 bg-green-500'></span>
-                  </span>
+                  <p className='absolute top-4 left-4 text-lg text-green-600 font-semibold'>
+                    ₦
+                  </p>
+                  <div className='absolute -top-2 right-0'>
+                    <span className='relative flex h-5 w-5 justify-center items-center'>
+                      <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75'></span>
+                      <span className='relative inline-flex rounded-full h-3 w-3 bg-green-500'></span>
+                    </span>
+                  </div>
+
+                  <p className='ml-3 text-gray-500 font-light '>
+                    as at {dayjs(latest_update).format("MMM, YYYY")}
+                  </p>
                 </div>
-
-                <p className='ml-3 text-gray-500 font-light '>
-                  as at {dayjs(latest_update).format("MMM, YYYY")}
-                </p>
               </div>
-            </div>
 
-            <div className='relative'>
-              <AnimatedCounter
-                value={monthly_contribution}
-                style='text-xl sm:text-3xl font-bold ml-5'
-                duratn={2}
-              />
-              {/* 
+              <div className='relative'>
+                <AnimatedCounter
+                  value={monthly_contribution}
+                  style='text-xl sm:text-3xl font-bold ml-5'
+                  duratn={2}
+                />
+                {/* 
               <AmountCounter
                 value={monthly_contribution}
                 style='text-xl sm:text-3xl font-bold ml-5'
                 duratn={2}
               /> */}
-              <p className='absolute -top-2 left-0'>₦</p>
+                <p className='absolute -top-2 left-0'>₦</p>
 
-              <p className='ml-5 text-gray-500  font-light'>
-                Monthly contribution
-              </p>
+                <p className='ml-5 text-gray-500  font-light'>
+                  Monthly contribution
+                </p>
+              </div>
+            </div>
+
+            {/* loan status */}
+
+            {/* loan free */}
+            <div>
+              {loan_status === "free" && (
+                <div
+                  className={`flex flex-col items-center justify-center p-5 mt-12 md:mt-20 bg-gray-100 dark:bg-gray-800 rounded-xl`}>
+                  <div className='flex flex-col gap-4 max-w-sm mx-auto text-center'>
+                    <p>You need a soft-loan?</p>
+                    {/* <Button>Apply</Button> */}
+                    <LoanDialog code={code} reload={getRecords} />
+                    <p className='mt-4 '>
+                      You are qualified to apply for a soft-loan of not more
+                      than ₦150,000 and a min. of ₦10,000. Note that the Admin
+                      may approve or not approve a soft-loan considering some
+                      conditions.
+                    </p>
+                    <div className="text-sm">
+                       <h1 className='text-red-600 text-lg'>T&C</h1>
+                    <ul className='text-center space-y-2 text-red-600'>
+                      <li>
+                        5% of loan amount will be deducted from source as
+                        commission.
+                      </li>
+                      <li>
+                        Loan payback duration is 6 mount starting from the date
+                        of approval.
+                      </li>
+                      <li>
+                        Defaulters will have the loan amount taken from their
+                        salary of the subsequent month.
+                      </li>
+                    </ul>
+                    </div>
+                   
+                  </div>
+                </div>
+              )}
+
+              {/* loan processing */}
+              {loan_status === "processing" && (
+                <div
+                  className={`flex flex-col items-center justify-center px-5 py-20 mt-12 md:mt-20 bg-amber-100 dark:bg-slate-800 rounded-xl`}>
+                  <div className='flex flex-col gap-4 max-w-sm mx-auto text-center'>
+                    <div className='flex items-center justify-center gap-3'>
+                      <p className='text-lg'>Processing</p>
+                      <LoaderCircleIcon className='animate-spin text-amber-600' />
+                    </div>
+                    <p className='mt-2'>
+                      Your loan application of N{loan_amount} is currently being
+                      processed. Hang-on.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* loan approved */}
+              {loan_status === "approved" && (
+                <div
+                  className={`flex flex-col items-center justify-center px-5 py-20 mt-12 md:mt-20 bg-green-100 dark:bg-slate-800 rounded-xl`}>
+                  <div className='flex flex-col gap-4 max-w-sm mx-auto text-center'>
+                    <p className='text-lg text-green-600'>Approved!</p>
+                    <p className='mt-2'>
+                      Congratulations. Your soft-loan has been approved. You are
+                      expected to repay on or before{" "}
+                      <span className='font-semibold text-red-600'>
+                        {dayjs(repay_date).format("MMM DD, YYYY")}
+                      </span>
+                      . Note that you will be penalized if you default.
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-
-          {/* loan status */}
-
-          {/* loan free */}
-          {loan_status === "free" && (
-            <div
-              className={`flex flex-col items-center justify-center py-20 px-5 mt-12  bg-gray-100 dark:bg-gray-800 rounded-xl`}>
-              <div className='flex flex-col gap-4 max-w-sm mx-auto text-center'>
-                <p>You need a soft-loan?</p>
-                {/* <Button>Apply</Button> */}
-                <LoanDialog code={code} reload={getRecords} />
-                <p className='mt-4 '>
-                  You are qualified to apply for a soft-loan of not more than
-                  ₦150,000 and a min. of ₦10,000. Note that the Admin may
-                  approve or not approve a soft-loan considering some
-                  conditions.
-                </p>
-                <h1 className='text-red-600 text-lg'>T&C</h1>
-                <ul className='text-center space-y-2 text-red-600'>
-                  <li>
-                    5% of loan amount will be deducted from source as
-                    commission.
-                  </li>
-                  <li>
-                    Loan payback duration is 6 mount starting from the date of
-                    approval.
-                  </li>
-                  <li>
-                    Defaulters will have the loan amount taken from their salary
-                    of the subsequent month.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          )}
-
-          {/* loan processing */}
-          {loan_status === "processing" && (
-            <div
-              className={`flex flex-col items-center justify-center py-20 px-5 mt-12  bg-amber-100 dark:bg-slate-800 rounded-xl`}>
-              <div className='flex flex-col gap-4 max-w-sm mx-auto text-center'>
-                <div className='flex items-center justify-center gap-3'>
-                  <p className='text-lg'>Processing</p>
-                  <LoaderCircleIcon className='animate-spin text-amber-600' />
-                </div>
-                <p className='mt-2'>
-                  Your loan application of N{loan_amount} is currently being
-                  processed. Hang-on.
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* loan approved */}
-          {loan_status === "approved" && (
-            <div
-              className={`flex flex-col items-center justify-center py-20 px-5 mt-12  bg-green-100 dark:bg-slate-800 rounded-xl`}>
-              <div className='flex flex-col gap-4 max-w-sm mx-auto text-center'>
-                <p className='text-lg text-green-600'>Approved!</p>
-                <p className='mt-2'>
-                  Congratulations. Your soft-loan has been approved. You are
-                  expected to repay on or before{" "}
-                  <span className="font-semibold text-red-600">{dayjs(repay_date).format("MMM DD, YYYY")}</span>. Note that you will be penalized if you default.
-                </p>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     );

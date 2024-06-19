@@ -154,7 +154,7 @@ const Home = () => {
                   </div>
 
                   <p className='ml-3 text-gray-500 font-light '>
-                    as at {dayjs(latest_update).format("MMM, YYYY")}
+                    as at{' '}{latest_update}
                   </p>
                 </div>
               </div>

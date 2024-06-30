@@ -200,16 +200,11 @@ const Home = () => {
                        <h1 className='text-red-600 text-lg'>T&C</h1>
                     <ul className='text-center space-y-2 text-red-600'>
                       <li>
-                        5% of loan amount will be deducted from source as
-                        commission.
+                        5% of loan amount as interest on loan will be added to the principal amount to be repaid.
                       </li>
                       <li>
-                        Loan payback duration is 6 mount starting from the date
+                        Loan repayment duration is 6 months starting from the date
                         of approval.
-                      </li>
-                      <li>
-                        Defaulters will have the loan amount taken from their
-                        salary of the subsequent month.
                       </li>
                     </ul>
                     </div>
@@ -247,7 +242,7 @@ const Home = () => {
                       <span className='font-semibold text-red-600'>
                         {dayjs(repay_date).format("MMM DD, YYYY")}
                       </span>
-                      . Note that you will be penalized if you default.
+                      . Note that if you default in repayment, you will be blacklisted for a year among other penalties. Contact the admins for more.
                     </p>
                   </div>
                 </div>

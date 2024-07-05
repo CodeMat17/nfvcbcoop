@@ -219,8 +219,8 @@ const Home = () => {
                   className={`flex flex-col items-center justify-center px-5 py-20 mt-12 md:mt-16 bg-amber-100 dark:bg-slate-800 rounded-xl`}>
                   <div className='flex flex-col gap-4 max-w-sm mx-auto text-center'>
                     <div className='flex items-center justify-center gap-3'>
-                      <p className='text-lg'>Processing</p>
-                      <LoaderCircleIcon className='animate-spin text-amber-600' />
+                      <p className='text-lg'>Request submitted successfully!</p>
+                      {/* <LoaderCircleIcon className='animate-spin text-amber-600' /> */}
                     </div>
                     <p className='mt-2'>
                       Your loan application of N{loan_amount} is currently being

@@ -12,7 +12,7 @@ import {
 import { createClient } from "@/utils/supabase/client";
 // import {createClient} from '@supabase/supabase-js'
 import dayjs from "dayjs";
-import { CalendarRangeIcon, LoaderCircleIcon, LoaderIcon } from "lucide-react";
+import { CalendarRangeIcon, LoaderIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -154,7 +154,7 @@ const Home = () => {
                   </div>
 
                   <p className='ml-3 text-gray-500 font-light '>
-                    as at{' '}{latest_update}
+                    as at {latest_update}
                   </p>
                 </div>
               </div>
@@ -196,19 +196,19 @@ const Home = () => {
                       may approve or not approve a soft-loan considering some
                       conditions.
                     </p>
-                    <div className="text-sm">
-                       <h1 className='text-red-600 text-lg'>T&C</h1>
-                    <ul className='text-center space-y-2 text-red-600'>
-                      <li>
-                        5% of loan amount as interest on loan will be added to the principal amount to be repaid.
-                      </li>
-                      <li>
-                        Loan repayment duration is 6 months starting from the date
-                        of approval.
-                      </li>
-                    </ul>
+                    <div className='text-sm'>
+                      <h1 className='text-red-600 text-lg'>T&C</h1>
+                      <ul className='text-center space-y-2 text-red-600'>
+                        <li>
+                          5% of loan amount as interest on loan will be added to
+                          the principal amount to be repaid.
+                        </li>
+                        <li>
+                          Loan repayment duration is 6 months starting from the
+                          date of approval.
+                        </li>
+                      </ul>
                     </div>
-                   
                   </div>
                 </div>
               )}
@@ -242,8 +242,16 @@ const Home = () => {
                       <span className='font-semibold text-red-600'>
                         {dayjs(repay_date).format("MMM DD, YYYY")}
                       </span>
-                      . Note that if you default in repayment, you will be blacklisted for a year among other penalties. Contact the admins for more.
+                      . Note that if you default in repayment, you will be
+                      blacklisted for a year among other penalties. Contact the
+                      admins for more.
                     </p>
+                    <div className="text-sm bg-gray-700 rounded-2xl p-5">
+                      <p className="text-green-500">Repayment Account Detail:</p>
+                      <p>NFVCB STAFF CO SOC LTD</p>
+                      <p>Zenith Bank</p>
+                      <p>1229203111</p>
+                    </div>
                   </div>
                 </div>
               )}

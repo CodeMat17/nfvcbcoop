@@ -246,11 +246,16 @@ const Home = () => {
                       blacklisted for a year among other penalties. Contact the
                       admins for more.
                     </p>
-                    <div className="text-sm bg-gray-700 rounded-2xl p-5">
-                      <p className="text-green-500">Repayment Account Detail:</p>
+                    <div className='bg-gray-700 rounded-2xl p-5'>
+                      <p className='text-green-500'>
+                        Repayment Account Detail:
+                      </p>
                       <p>NFVCB STAFF CO SOC LTD</p>
                       <p>Zenith Bank</p>
                       <p>1229203111</p>
+                      <p className='mt-2 italic'>
+                        NB: Do not forget to add the 5% interest please.
+                      </p>
                     </div>
                   </div>
                 </div>

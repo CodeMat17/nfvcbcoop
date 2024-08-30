@@ -263,7 +263,7 @@ const Home = () => {
   }
 
   return (
-    <div className='w-full h-full px-4 pt-20 pb-32 flex flex-col items-center justify-center'>
+    <div className='w-full min-h-screen px-4 pt-20 pb-32 flex flex-col justify-cente'>
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       {/* <UserRecord data={data} /> */}
 
